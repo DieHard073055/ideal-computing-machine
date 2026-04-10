@@ -1,0 +1,104 @@
+services:
+  # ── PostgreSQL ──────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: lucky
+      POSTGRES_PASSWORD: lucky
+      POSTGRES_DB: lucky
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U lucky']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Local EVM chain (simulates Ethereum / BNB / Polygon) ───────────────────
+  # Anvil pre-funds 10 accounts with 10 000 ETH each.
+  # The deployer service mints 1 000 000 mUSDC to each account after startup.
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:latest
+    entrypoint: anvil
+    command:
+      - --host=0.0.0.0
+      - --port=8545
+      - --chain-id=31337
+      - --block-time=2        # mine a block every 2 s so Transfer events appear quickly
+      - --accounts=10
+      - --balance=10000
+    ports:
+      - '8545:8545'
+    healthcheck:
+      test: ['CMD', 'cast', 'block-number', '--rpc-url', 'http://localhost:8545']
+      interval: 3s
+      timeout: 5s
+      retries: 15
+
+  # ── One-shot deployer: compiles & deploys MockToken, mints to test wallets ──
+  # Uses Node.js + ethers + solc-js — no external tooling required.
+  deployer:
+    image: node:20-alpine
+    depends_on:
+      anvil:
+        condition: service_healthy
+    volumes:
+      - ./scripts/deploy-local:/app
+      - ./contracts:/contracts:ro
+      - deployer_modules:/app/node_modules
+    working_dir: /app
+    command: sh -c "npm install --silent && node deploy.mjs"
+    environment:
+      RPC_URL: http://anvil:8545
+      PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
+      CONTRACT_SRC: /contracts/MockToken.sol
+    # exits 0 when done; app waits for service_completed_successfully
+
+  # ── Next.js app ─────────────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      deployer:
+        condition: service_completed_successfully
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgresql://lucky:lucky@db:5432/lucky
+      APP_SECRET: change_me_to_at_least_32_random_hex_chars
+
+      # ── Both EVM chains point at local Anvil for development ─────────────
+      BASE_RPC_URL: http://anvil:8545
+      ARBITRUM_RPC_URL: http://anvil:8545
+
+      # MockToken deployed by the deployer service.
+      # CREATE from 0xf39F...2266 nonce=0 is always this address.
+      BASE_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      ARBITRUM_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+
+      ADMIN_EMAIL: admin@lucky.local
+      ADMIN_PASSWORD: changeme
+      NODE_ENV: production
+
+      # ── Treasury / sweep config ──────────────────────────────────────────
+      # For local testing we reuse Anvil account 0 as the treasury.
+      # It already holds 10 000 ETH and 1 000 000 mUSDC, so gas top-ups work.
+      # In production replace with your real treasury wallet.
+      TREASURY_EVM_ADDRESS: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
+      TREASURY_EVM_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
+      # Solana and TRON treasury keys are optional; omit to skip those chains.
+      # TREASURY_SOLANA_ADDRESS: ''
+      # TREASURY_SOLANA_PRIVATE_KEY: ''
+      # TREASURY_TRON_ADDRESS: ''
+      # TREASURY_TRON_PRIVATE_KEY: ''
+
+volumes:
+  pgdata:
+  deployer_modules:

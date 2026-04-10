@@ -1,0 +1,10 @@
+{
+  "name": "lucky-local-deployer",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "ethers": "^6",
+    "solc": "^0.8.28"
+  }
+}

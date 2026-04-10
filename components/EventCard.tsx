@@ -22,7 +22,7 @@ const STATUS_VARIANTS: Record<string, 'green' | 'yellow' | 'red' | 'gray'> = {
   completed: 'gray',
 }
 
-const ALL_CHAINS = ['ethereum', 'bnb', 'polygon', 'solana', 'tron']
+const ALL_CHAINS = ['base', 'arbitrum', 'bnb', 'polygon']
 
 export function EventCard({ event, linkPrefix = '/dashboard/events' }: EventCardProps) {
   return (

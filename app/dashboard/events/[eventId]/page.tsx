@@ -6,7 +6,7 @@ import { getOrCreateWallet } from '@/lib/wallet'
 import { BuyTicketForm } from './BuyTicketForm'
 import { TicketCard } from '@/components/TicketCard'
 
-const ALL_CHAINS = ['ethereum', 'bnb', 'polygon', 'solana', 'tron']
+const ALL_CHAINS = ['base', 'arbitrum', 'bnb', 'polygon']
 
 export default async function EventDetailPage({
   params,

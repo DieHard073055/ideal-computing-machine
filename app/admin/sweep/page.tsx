@@ -106,6 +106,8 @@ export default function SweepPage() {
               <option value="">All chains</option>
               <option value="base">Base</option>
               <option value="arbitrum">Arbitrum</option>
+              <option value="bnb">BNB Chain</option>
+              <option value="polygon">Polygon</option>
             </select>
           </div>
           <button

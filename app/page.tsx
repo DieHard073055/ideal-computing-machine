@@ -133,10 +133,12 @@ export default async function LandingPage() {
       {/* Chains */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 className="text-2xl font-display font-bold text-winzee-indigo text-center mb-8">Supported Chains</h2>
-        <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { chain: 'base', label: 'Base', icon: '🔵' },
-            { chain: 'arbitrum', label: 'Arbitrum', icon: '🔷' },
+            { chain: 'base',     label: 'Base',      icon: '🔵' },
+            { chain: 'arbitrum', label: 'Arbitrum',  icon: '🔷' },
+            { chain: 'bnb',      label: 'BNB Chain', icon: '⬡' },
+            { chain: 'polygon',  label: 'Polygon',   icon: '⬟' },
           ].map(({ chain, label, icon }) => (
             <div key={chain} className="bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-card hover:shadow-card-hover transition-shadow">
               <div className="text-3xl mb-2">{icon}</div>

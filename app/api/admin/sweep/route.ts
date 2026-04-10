@@ -3,7 +3,7 @@ import { getSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { sweepEVM } from '@/lib/payment/sweep'
 
-const EVM_CHAINS = ['base', 'arbitrum']
+const EVM_CHAINS = ['base', 'arbitrum', 'bnb', 'polygon']
 
 function getTreasuryConfig(chain: string): { address: string; privateKey: string } | null {
   // Per-chain overrides → fall back to the generic EVM treasury

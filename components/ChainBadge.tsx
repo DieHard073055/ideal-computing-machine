@@ -6,8 +6,10 @@ interface ChainBadgeProps {
 }
 
 const CHAIN_STYLES: Record<string, { label: string; className: string; icon: string }> = {
-  base:     { label: 'Base', icon: '🔵', className: 'bg-blue-50 text-blue-700 border-blue-200' },
+  base:     { label: 'Base',     icon: '🔵', className: 'bg-blue-50 text-blue-700 border-blue-200' },
   arbitrum: { label: 'Arbitrum', icon: '🔷', className: 'bg-sky-50 text-sky-700 border-sky-200' },
+  bnb:      { label: 'BNB',      icon: '⬡',  className: 'bg-amber-50 text-amber-700 border-amber-200' },
+  polygon:  { label: 'Polygon',  icon: '⬟',  className: 'bg-purple-50 text-purple-700 border-purple-200' },
 }
 
 export function ChainBadge({ chain, className = '' }: ChainBadgeProps) {

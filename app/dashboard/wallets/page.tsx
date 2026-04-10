@@ -2,7 +2,7 @@ import { getSession } from '@/lib/auth'
 import { getOrCreateWallet } from '@/lib/wallet'
 import { WalletCard } from '@/components/WalletCard'
 
-const CHAINS = ['base', 'arbitrum']
+const CHAINS = ['base', 'arbitrum', 'bnb', 'polygon']
 
 export default async function WalletsPage() {
   const session = await getSession()

@@ -19,8 +19,10 @@ interface BuyTicketFormProps {
 }
 
 const CHAIN_META: Record<string, { label: string; token: string; icon: string }> = {
-  base:     { label: 'Base', token: 'USDC', icon: '🔵' },
+  base:     { label: 'Base',     token: 'USDC', icon: '🔵' },
   arbitrum: { label: 'Arbitrum', token: 'USDC', icon: '🔷' },
+  bnb:      { label: 'BNB Chain', token: 'USDC', icon: '⬡' },
+  polygon:  { label: 'Polygon',  token: 'USDC', icon: '⬟' },
 }
 
 export function BuyTicketForm({ eventId, wallets, ticketPrice }: BuyTicketFormProps) {

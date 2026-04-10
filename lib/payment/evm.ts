@@ -13,6 +13,16 @@ const CHAIN_CONFIGS: Record<string, { rpcUrl: string; tokenAddress: string }> = 
     tokenAddress:
       process.env.ARBITRUM_TOKEN_ADDRESS ?? '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
   },
+  bnb: {
+    rpcUrl: process.env.BSC_RPC_URL ?? 'https://data-seed-prebsc-1-s1.binance.org:8545',
+    tokenAddress:
+      process.env.BNB_TOKEN_ADDRESS ?? '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+  },
+  polygon: {
+    rpcUrl: process.env.POLYGON_RPC_URL ?? 'https://rpc-amoy.polygon.technology',
+    tokenAddress:
+      process.env.POLYGON_TOKEN_ADDRESS ?? '0x41E94Eb019C0762f9Bfcf9Fb1E58725BfB0e7582',
+  },
 }
 
 const ERC20_TRANSFER_ABI = [

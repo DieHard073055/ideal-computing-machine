@@ -6,8 +6,8 @@ import { LogoutButton } from '@/components/LogoutButton'
 import { MobileNav } from '@/components/MobileNav'
 
 export const metadata: Metadata = {
-  title: 'Winzee — Play with optimism. Win with style.',
-  description: 'Multi-chain lucky draw platform. Buy tickets with USDT/USDC on 5 blockchains.',
+  title: 'Winzee — The Maldives\' First On-Chain Lucky Draw',
+  description: 'Proudly Maldivian. Buy lucky draw tickets with USDC on Base, Arbitrum, BNB Chain, and Polygon.',
 }
 
 export default async function RootLayout({
@@ -31,6 +31,7 @@ export default async function RootLayout({
                   </svg>
                 </div>
                 <span className="font-display font-bold text-xl text-winzee-dark">Winzee</span>
+                <span className="text-lg leading-none" title="Proudly Maldivian">🇲🇻</span>
               </Link>
 
               {/* Desktop nav */}
@@ -78,6 +79,22 @@ export default async function RootLayout({
         </nav>
 
         {children}
+
+        {/* Footer */}
+        <footer className="bg-winzee-dark text-white/60 py-8 px-4">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+            <div className="flex items-center gap-2 font-display font-semibold text-white">
+              <span>🇲🇻</span>
+              <span>Winzee</span>
+            </div>
+            <p className="text-center">
+              Made with <span className="text-red-400">♥</span> in the Maldives &nbsp;·&nbsp; © {new Date().getFullYear()} Winzee. All rights reserved.
+            </p>
+            <p className="font-display text-winzee-teal text-xs tracking-wide" dir="rtl" lang="dv">
+              ނަސީބު ތިޔަ ލިބޭނެ
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   )

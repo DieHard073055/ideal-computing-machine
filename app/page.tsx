@@ -21,10 +21,10 @@ export default async function LandingPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-winzee-dark via-winzee-purple to-winzee-purple2 text-white py-20 px-4 relative overflow-hidden">
-        {/* Background decoration */}
+      <section className="bg-gradient-to-br from-winzee-dark via-winzee-purple to-winzee-teal text-white pt-20 pb-0 px-4 relative overflow-hidden">
+        {/* Background blobs */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-winzee-lime/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-winzee-gold/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-winzee-teal/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4" />
 
         <div className="max-w-4xl mx-auto text-center relative">
           {/* Logo mark */}
@@ -36,20 +36,41 @@ export default async function LandingPage() {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-white/80 text-sm mb-6 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-winzee-lime animate-pulse" />
-            Multi-chain · Transparent · Instant
+          {/* Maldivian identity badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-white/90 text-sm mb-4 backdrop-blur-sm">
+            <span>🇲🇻</span>
+            <span>The Maldives&apos; First On-Chain Lucky Draw</span>
+          </div>
+
+          {/* Live badge */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-winzee-teal/20 border border-winzee-teal/40 rounded-full px-4 py-1.5 text-white/80 text-sm backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-winzee-teal animate-pulse" />
+              Multi-chain · Transparent · Instant
+            </div>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-display font-bold mb-4 leading-tight">
             Play. Dream.{' '}
             <span className="text-winzee-lime">Win.</span>
           </h1>
-          <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10">
-            Small ticket. Big possibility. Buy lucky draw tickets with USDT or USDC on Ethereum, BNB Chain, Polygon, Solana, or TRON.
+
+          {/* Dhivehi phrase */}
+          <p
+            className="text-winzee-teal font-display text-xl sm:text-2xl mb-3 tracking-wide"
+            dir="rtl"
+            lang="dv"
+          >
+            ނަސީބު ތިޔަ ލިބޭނެ
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <p className="text-sm text-white/50 italic mb-6">&ldquo;Luck will come to you&rdquo;</p>
+
+          <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10">
+            Buy lucky draw tickets with USDC on Base, Arbitrum, BNB Chain, or Polygon. Proudly built in the Maldives 🇲🇻
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pb-16">
             <Link
               href="/register"
               className="w-full sm:w-auto bg-winzee-lime text-winzee-dark px-8 py-3.5 rounded-pill font-bold text-base shadow-winzee-lg hover:brightness-105 transition-all active:scale-[0.98]"
@@ -64,6 +85,13 @@ export default async function LandingPage() {
             </Link>
           </div>
         </div>
+
+        {/* Wave transition */}
+        <div className="relative -mb-1">
+          <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" className="w-full block">
+            <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#F6F7FB" />
+          </svg>
+        </div>
       </section>
 
       {/* Stats */}
@@ -74,7 +102,7 @@ export default async function LandingPage() {
             <div className="text-winzee-muted text-sm mt-0.5">Open Events</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-display font-bold text-winzee-purple">5</div>
+            <div className="text-2xl sm:text-3xl font-display font-bold text-winzee-teal">4</div>
             <div className="text-winzee-muted text-sm mt-0.5">Chains</div>
           </div>
           <div className="text-center">
@@ -149,10 +177,26 @@ export default async function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-winzee-purple to-winzee-purple2 text-white py-16 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-display font-bold mb-4">Ready to win?</h2>
-          <p className="text-white/70 mb-8">Spin into possibility. Dreams start here.</p>
+      <section className="relative bg-gradient-to-r from-winzee-dark via-winzee-purple to-winzee-teal text-white py-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          {/* Dhow / ocean wave pattern */}
+          <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+            <path d="M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,100 L1440,200 L0,200 Z" fill="white" />
+            <path d="M0,140 C300,100 600,180 900,140 C1100,110 1300,160 1440,140 L1440,200 L0,200 Z" fill="white" opacity="0.5"/>
+          </svg>
+        </div>
+        <div className="max-w-2xl mx-auto text-center relative">
+          <div className="text-4xl mb-4">🇲🇻</div>
+          <h2 className="text-3xl font-display font-bold mb-2">Proudly Maldivian</h2>
+          <p
+            className="text-winzee-teal font-display text-lg mb-2"
+            dir="rtl"
+            lang="dv"
+          >
+            ނަސީބު ތިޔަ ލިބޭނެ
+          </p>
+          <p className="text-white/60 text-sm italic mb-6">&ldquo;Luck will come to you&rdquo;</p>
+          <p className="text-white/70 mb-8">Built from the islands, for the world. Join the draw.</p>
           <Link
             href="/register"
             className="inline-block bg-winzee-lime text-winzee-dark px-10 py-3.5 rounded-pill font-bold text-base shadow-winzee-lg hover:brightness-105 transition-all active:scale-[0.98]"

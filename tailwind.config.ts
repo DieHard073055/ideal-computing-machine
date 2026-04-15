@@ -13,6 +13,8 @@ const config: Config = {
           purple2: '#B32AFF',
           lime: '#C7FF00',
           gold: '#D4AF37',
+          teal: '#00B4D8',
+          teal2: '#0096B7',
           dark: '#2E0057',
           indigo: '#1B1030',
           muted: '#6B5A7F',
